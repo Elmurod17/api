@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/output.css" />
+    <title>todos-api</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <!-- Skeleton -->
+
+    <template id="skeletonTemplete">
+      <div>
+        <div
+          role="status"
+          class="max-w p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded-sm shadow-sm animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700"
+        >
+          <div class="flex items-center justify-between pt-4">
+            <div>
+              <div
+                class="w-120 h-4 bg-gray-200 rounded-full dark:bg-gray-700"
+              ></div>
+              <br />
+              <div
+                class="h-5 bg-gray-300 rounded-full dark:bg-gray-600 w-48 mb-2.5"
+              ></div>
+            </div>
+            <div
+              class="h-8 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- cardTemplete -->
+    <template id="cardTemplete">
+      <div
+        class="max-w p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded-sm shadow-sm dark:divide-gray-700 md:p-6 dark:border-gray-700"
+      >
+        <div class="flex items-center justify-between pt-4">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-900 mb-2">Title</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Complated?</p>
+          </div>
+          <button
+            class="delete px-3 py-1 text-center text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200 w-32"
+          >
+            Delete
+          </button>
+          <button
+            class="info px-3 py-1 text-center text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200 w-32"
+          >
+            More
+          </button>
+        </div>
+      </div>
+    </template>
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+
+    <script src="./js/api.js"></script>
+  </body>
+</html>
