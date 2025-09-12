@@ -1,70 +1,60 @@
+const elCardTemplate = document.getElementById("cardTemp");
 const elContainer = document.getElementById("container");
-const elSkeletonTemplete = document.getElementById("skeletonTemplete");
-const elCardTemplete = document.getElementById("cardTemplete");
-
-showSkeletons(15);
+const elLoading = document.getElementById("loading");
 
 function init() {
-  fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => res.json())
+  elLoading.style.display = "block";
+  fetch("https://json-api.uz/api/project/fn43/cars")
     .then((res) => {
-      setTimeout(() => {
-        ui(res);
-      }, 2000);
+      return res.json();
     })
-    .catch((err) => {
-      console.error(err);
+    .then((res) => {
+      ui(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      elLoading.style.display = "none";
     });
-}
-function showSkeletons(count) {
-  elContainer.innerHTML = "";
-  for (let i = 0; i < count; i++) {
-    const clone = elSkeletonTemplete.content.cloneNode(true);
-    elContainer.appendChild(clone);
-  }
-}
-
-function deleteEl(id) {
-  fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-    method: "DELETE",
-  })
-    .then(() => {
-      init();
-    })
-    .then((res) => {})
-    .finally(() => {});
 }
 init();
 
-function ui(todos) {
+// delete
+
+function deleteEl(id) {
+  fetch(`https://json-api.uz/api/project/fn43/cars/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      init();
+    })
+    .then((res) => {})
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {});
+}
+
+function ui(cars) {
   elContainer.innerHTML = "";
-  todos.forEach((todo) => {
-    const clone = elCardTemplete.content.cloneNode(true);
-    const title = clone.querySelector("h2");
-    const status = clone.querySelector("p");
-    const button = clone.querySelector(".info");
-    const deleteButton = clone.querySelector(".delete");
+  cars.forEach((element) => {
+    const clone = elCardTemplate.cloneNode(true).content;
+    const elTitle = clone.querySelector("h2");
+    const elDescription = clone.querySelector("p");
+    const elCategory = clone.querySelector("mark");
+    const elDeleteBtn = clone.querySelector("button");
 
-    button.addEventListener("click", () => {
-      alert(`
-            userId: ${todo.userId}
-            id: ${todo.id}
-            title: ${todo.title}
-            completed: ${todo.completed}
-          `);
-    });
-
-    deleteButton.id = todo.id;
-
-    deleteButton.addEventListener("click", () => {
-      deleteEl(todo.id);
-    });
-
-    title.textContent = todo.title;
-    status.textContent = todo.completed
-      ? "isCompleted : true"
-      : "isCompleted : false";
-
-    elContainer.appendChild(clone);
+    elTitle.innerText = element.name;
+    elDescription.innerText = element.description;
+    elCategory.innerText = element.category;
+    elDeleteBtn.id = element.id;
+    elContainer.append(clone);
   });
 }
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    deleteEl(e.target.id);
+  }
+});
