@@ -72,9 +72,20 @@
     </form>
 
     <!-- loadin -->
-    <div id="loading" class="mt-6 text-gray-600 font-medium">
-      Ma'lumotlar yuklanmoqda...
-    </div>
+    <template id="loading">
+      <div
+        class="bg-white p-4 rounded-lg flex flex-col space-y-2 animate-pulse"
+      >
+        <div class="h-5 bg-gray-200 rounded w-2/3"></div>
+        <div class="h-4 bg-gray-200 rounded w-full"></div>
+        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+        <div class="h-6 bg-gray-200 rounded-md w-20"></div>
+        <div class="flex justify-between pt-2 space-x-2">
+          <div class="h-8 w-20 bg-gray-200 rounded-md"></div>
+          <div class="h-8 w-20 bg-gray-200 rounded-md"></div>
+        </div>
+      </div>
+    </template>
 
     <div
       id="container"

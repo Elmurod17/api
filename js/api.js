@@ -4,6 +4,8 @@ const elLoading = document.getElementById("loading");
 const elForm = document.getElementById("form");
 const elAddBtn = document.getElementById("addBtn");
 const elEditBtn = document.getElementById("editBtn");
+const elSkleton = document.getElementById("skleton");
+
 function init() {
   elLoading.style.display = "block";
   fetch("https://json-api.uz/api/project/fn43/cars")
