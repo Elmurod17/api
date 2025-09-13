@@ -4,18 +4,102 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cars-api</title>
+    <link rel="stylesheet" href="./css/output.css" />
   </head>
-  <body>
-    <div id="loading">Ma'lumotlar yuklanmoqda...</div>
-    <div id="container"></div>
-    <template id="cardTemp">
+  <body class="flex flex-col items-center py-10">
+    <!-- Form -->
+    <form
+      id="form"
+      class="w-full max-w-md bg-white p-6 rounded-lg shadow-md space-y-4"
+    >
       <div>
-        <h2></h2>
-        <p></p>
-        <mark></mark>
-        <button class="delete-btn">Delete</button>
+        <input
+          required
+          placeholder="Name of the car"
+          type="text"
+          name="name"
+          class="w-full px-3 py-2 border rounded-md focus:ring-2 outline-none"
+        />
+      </div>
+      <div>
+        <textarea
+          required
+          name="description"
+          placeholder="Description of the car"
+          class="w-full px-3 py-2 border rounded-md outline-none"
+        ></textarea>
+      </div>
+      <div>
+        <input
+          required
+          type="number"
+          name="price"
+          placeholder="Cost of the car"
+          class="w-full px-3 py-2 border rounded-md outline-none"
+        />
+      </div>
+      <div>
+        <input
+          required
+          type="text"
+          name="category"
+          placeholder="Category..."
+          class="w-full px-3 py-2 border rounded-md outline-none"
+        />
+      </div>
+      <div class="flex justify-between items-center pt-2">
+        <div id="addBtn" class="space-x-2">
+          <button
+            type="submit"
+            class="bg-green-600 text-white px-4 py-2 rounded-md"
+          >
+            Add
+          </button>
+          <button
+            type="reset"
+            class="bg-gray-300 text-gray-800 px-4 py-2 rounded-md"
+          >
+            Clear
+          </button>
+        </div>
+        <button
+          id="editBtn"
+          class="bg-green-500 text-white px-4 py-2 rounded-md"
+        >
+          Edit
+        </button>
+      </div>
+    </form>
+
+    <!-- loadin -->
+    <div id="loading" class="mt-6 text-gray-600 font-medium">
+      Ma'lumotlar yuklanmoqda...
+    </div>
+
+    <div
+      id="container"
+      class="mt-6 grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+    ></div>
+
+    <!-- templete -->
+    <template id="cardTemp">
+      <div class="bg-white p-4 rounded-lg flex flex-col space-y-2">
+        <h2 class="text-lg font-semibold text-gray-800"></h2>
+        <p class="text-gray-600 flex-1"></p>
+        <mark class="inline-block px-2 py-1 rounded-md"></mark>
+        <div class="flex justify-between pt-2">
+          <button class="delete-btn bg-black text-white px-3 py-1 rounded-md">
+            Delete
+          </button>
+          <button
+            class="edit-btn bg-yellow-400 text-white px-3 py-1 rounded-md"
+          >
+            Edit
+          </button>
+        </div>
       </div>
     </template>
+
     <script src="./js/api.js" type="module"></script>
   </body>
 </html>
